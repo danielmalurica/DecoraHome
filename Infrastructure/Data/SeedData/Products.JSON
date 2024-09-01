@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "Canapea Extensibila",
+        "Description": "Descrierea mea despre canapea",
+        "Price": 1250,
+        "PictureUrl": "",
+        "Category": "Canapele/Paturi",
+        "Brand": "SofaBed",
+        "QuantityInStock": 15 
+    },
+    {
+        "Name": "Pat Dublu",
+        "Description": "Descrierea mea despre pat",
+        "Price": 2200,
+        "PictureUrl": "",
+        "Category": "Canapele/Paturi",
+        "Brand": "Dormeo",
+        "QuantityInStock": 31
+    }
+]

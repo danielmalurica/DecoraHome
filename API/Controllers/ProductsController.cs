@@ -13,9 +13,9 @@ public class ProductsController(IProductRepository productRepository) : Controll
 {
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+    public async Task<ActionResult<IEnumerable<Product>>> GetProducts(string? brand, string? category, string? sort)
     {
-        return Ok(await productRepository.GetProductsAsync());
+        return Ok(await productRepository.GetProductsAsync(brand, category, sort));
     }
 
     [HttpGet("{id}")]
@@ -24,6 +24,18 @@ public class ProductsController(IProductRepository productRepository) : Controll
         var product = await productRepository.GetProductByIdAsync(id);
         if (product == null) return NotFound();
         return product;
+    }
+
+    [HttpGet("brands")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+    {
+        return Ok(await productRepository.GetBrandsAsync());
+    }
+
+    [HttpGet("categories")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetCategories()
+    {
+        return Ok(await productRepository.GetCategoriesAsync());
     }
 
     [HttpPost]
