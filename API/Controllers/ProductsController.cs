@@ -16,7 +16,7 @@ public class ProductsController(IGenericRepository<Product> productRepository) :
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetProducts(string? brand, string? category, string? sort)
     {
-        var spec = new ProductSpecification(brand, category);
+        var spec = new ProductSpecification(brand, category, sort);
         var products = await productRepository.ListAsync(spec);
         //return Ok(await productRepository.GetProductsAsync(brand, category, sort));
         return Ok(products);
@@ -33,15 +33,15 @@ public class ProductsController(IGenericRepository<Product> productRepository) :
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
     {
-        //return Ok(await productRepository.GetBrandsAsync());
-        return Ok();
+        var spec = new BrandListSpecification();
+        return Ok(await productRepository.ListAsync(spec));
     }
 
     [HttpGet("categories")]
     public async Task<ActionResult<IReadOnlyList<string>>> GetCategories()
     {
-        //return Ok(await productRepository.GetCategoriesAsync());
-        return Ok();
+        var spec = new CategoryListSpecification();
+        return Ok(await productRepository.ListAsync(spec));
     }
 
     [HttpPost]
